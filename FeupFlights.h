@@ -8,13 +8,16 @@
 
 #include <unordered_set>
 #include "Airline.h"
+#include "Airport.h"
 
 class FeupFlights {
-    unordered_set<Airline, betAirline, betAirline> airlines;
+    unordered_set<Airline, HashAirline, HashAirline> airlines;
+    unordered_set<Airport, HashAirport, HashAirport> airports;
 
 public:
     FeupFlights();
     void readAirlines();
+    void readAirports();
 };
 
 
