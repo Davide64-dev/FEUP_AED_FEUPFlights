@@ -64,3 +64,12 @@ void FeupFlights::readAirports() {
         airports.insert(temp);
     }
 }
+
+void FeupFlights::createFlightGraphTEST() {
+    list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
+    flights = Graph(airports);
+    flights.addEdge("test1", "test2", "al1");
+    flights.addEdge("test1", "test3", "al1");
+    flights.addEdge("test2", "test5", "al2");
+    flights.addEdge("test2", "test5", "al3");
+}

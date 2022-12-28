@@ -9,15 +9,17 @@
 #include <unordered_set>
 #include "Airline.h"
 #include "Airport.h"
+#include "graph.h"
 
 class FeupFlights {
     unordered_set<Airline, HashAirline, HashAirline> airlines;
     unordered_set<Airport, HashAirport, HashAirport> airports;
-
+    Graph flights;
 public:
     FeupFlights();
     void readAirlines();
     void readAirports();
+    void createFlightGraphTEST();
 };
 
 

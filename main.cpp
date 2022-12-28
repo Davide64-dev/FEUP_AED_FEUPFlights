@@ -5,4 +5,5 @@ int main() {
     FeupFlights feup = FeupFlights();
     feup.readAirlines();
     feup.readAirports();
+    feup.createFlightGraphTEST();
 }
