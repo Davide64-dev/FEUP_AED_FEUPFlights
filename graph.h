@@ -32,6 +32,8 @@ public:
 
     void setNodes(const list<string>& nodes);
 
+    void addNode(string node);
+
     void addEdge(const string& source, string dest, string airline);
 
 };

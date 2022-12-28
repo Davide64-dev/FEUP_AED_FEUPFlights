@@ -62,6 +62,7 @@ void FeupFlights::readAirports() {
 
         Airport temp = Airport(cod, name, city, country, stof(latitude), stof(longitude));
         airports.insert(temp);
+        flights.addNode(cod);
     }
 }
 

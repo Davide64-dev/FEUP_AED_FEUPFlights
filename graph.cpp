@@ -25,6 +25,12 @@ void Graph::setNodes(const list<string> &nodes) {
     }
 }
 
+void Graph::addNode(string node) {
+    Node node1;
+    node1.adj.clear();
+    this->nodes.insert({node, node1});
+}
+
 void Graph::addEdge(const string& source, string dest, string airline) {
     if(nodes.find(source) != nodes.end())
         nodes[source].adj.push_back({dest, airline});
