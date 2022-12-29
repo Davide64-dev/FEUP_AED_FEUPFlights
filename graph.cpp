@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <queue>
 #include "graph.h"
 
 using namespace std;
@@ -22,6 +23,7 @@ void Graph::setNodes(const list<string> &nodes) {
     for(const string& source : nodes) {
         Node node;
         node.adj.clear();
+        node.name = source;
         this->nodes.insert({source, node});
     }
 }
@@ -29,6 +31,7 @@ void Graph::setNodes(const list<string> &nodes) {
 void Graph::addNode(string node) {
     Node node1;
     node1.adj.clear();
+    node1.name = node;
     this->nodes.insert({node, node1});
 }
 
@@ -45,6 +48,48 @@ void Graph::printEdgesTest() {
     }
 }
 
+void Graph::bfs(const string& source) {
+    queue<Node> unvisited_nodes;
+
+    for(auto node : nodes) {
+        node.second.visited = false;
+        node.second.distance = -1;
+        node.second.previous = "";
+    }
+    nodes[source].distance = 0;
+    unvisited_nodes.push(nodes[source]);
+
+    while(!unvisited_nodes.empty()) {
+        Node nodeU = unvisited_nodes.front(); unvisited_nodes.pop();
+        list<Edge> neighborsU = nodeU.adj;
+        for(const Edge& edgeW : neighborsU) {
+            string nodeW = edgeW.dest;
+            if(!nodes[nodeW].visited) {
+                unvisited_nodes.push(nodes[nodeW]);
+                nodes[nodeW].visited = true;
+                nodes[nodeW].distance = nodeU.distance + 1;
+                nodes[nodeW].previous = nodeU.name;
+            }
+        }
+    }
+}
+
+list<string> Graph::leastFlights(const string& source, const string& dest) {
+    list<string> airports;
+
+    bfs(source);
+    if(nodes[dest].distance == -1)
+        return airports;
+
+    string airport = dest;
+    while(airport != source) {
+        airports.push_front(airport);
+        airport = nodes[airport].previous;
+    }
+    airports.push_front(airport);
+
+    return airports;
+}
 
 
 

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <cmath>
 #include "FeupFlights.h"
 
 using namespace std;
@@ -100,6 +101,35 @@ void FeupFlights::createFlightGraphTEST() {
     flights.addEdge("test1", "test3", "al1");
     flights.addEdge("test2", "test5", "al2");
     flights.addEdge("test2", "test5", "al3");
+}
+
+void FeupFlights::bfsAndleastFlightsTEST() {
+    list<string> result;
+
+    list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
+    flights = Graph(airports);
+    flights.addEdge("test1", "test2", "al1");
+    flights.addEdge("test2", "test3", "al1");
+    flights.addEdge("test3", "test4", "al1");
+    flights.addEdge("test4", "test5", "al1");
+
+    result = flights.leastFlights("test1", "test5");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    flights.addEdge("test1", "test4", "al1");
+    result = flights.leastFlights("test1", "test5");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    flights.addEdge("test3", "test5", "al1");
+    result = flights.leastFlights("test1", "test5");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
 }
 
 void FeupFlights::showEdgesTest() {

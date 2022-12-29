@@ -21,6 +21,7 @@ public:
     void readAirports();
     void readFlights();
     void createFlightGraphTEST();
+    void bfsAndleastFlightsTEST();
     void showEdgesTest();
     double haversine(float lat1, float lon1, float lat2, float lon2);
     vector<string> allAirportsLessThan(int x, float lat, float lon);

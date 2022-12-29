@@ -18,8 +18,11 @@ class Graph {
     };
 
     struct Node {
+        string name;
         list<Edge> adj;
         bool visited;
+        int distance;
+        string previous;
     };
 
     int n;
@@ -39,5 +42,9 @@ public:
     void addEdge(const string& source, string dest, string airline);
 
     void printEdgesTest();
+
+    void bfs(const string& source);
+
+    list<string> leastFlights(const string& source, const string& dest);
 };
 #endif //AED_PROJECT2_GRAPH_H

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <tclTomMathDecls.h>
 #include <vector>
 #include "FeupFlights.h"
 char p(string a);
@@ -34,8 +33,11 @@ int main() {
 
     }
      */
+
     vector<string> temp = feup.allAirportsCity("London", "United Kingdom");
     for (string i : temp) cout << i << ", ";
+
+    //feup.bfsAndleastFlightsTEST();
 }
 
 char p(string a){
