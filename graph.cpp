@@ -51,7 +51,7 @@ void Graph::printEdgesTest() {
 void Graph::bfs(const string& source) {
     queue<Node> unvisited_nodes;
 
-    for(auto node : nodes) {
+    for(auto& node : nodes) {
         node.second.visited = false;
         node.second.distance = -1;
         node.second.previous = "";

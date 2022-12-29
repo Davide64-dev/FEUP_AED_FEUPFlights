@@ -34,10 +34,10 @@ int main() {
     }
      */
 
-    vector<string> temp = feup.allAirportsCity("London", "United Kingdom");
-    for (string i : temp) cout << i << ", ";
+   //vector<string> temp = feup.allAirportsCity("London", "United Kingdom");
+    //for (string i : temp) cout << i << ", ";
 
-    //feup.bfsAndleastFlightsTEST();
+    feup.bfsAndleastFlightsTEST();
 }
 
 char p(string a){

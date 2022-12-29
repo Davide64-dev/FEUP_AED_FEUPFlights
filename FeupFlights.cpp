@@ -118,13 +118,13 @@ void FeupFlights::bfsAndleastFlightsTEST() {
         cout << airport << "->";
     cout << "\n";
 
-    flights.addEdge("test1", "test4", "al1");
+    flights.addEdge("test1", "test3", "al1");
     result = flights.leastFlights("test1", "test5");
     for(string airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    flights.addEdge("test3", "test5", "al1");
+    flights.addEdge("test1", "test5", "al1");
     result = flights.leastFlights("test1", "test5");
     for(string airport : result)
         cout << airport << "->";
