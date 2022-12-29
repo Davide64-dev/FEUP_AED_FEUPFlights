@@ -8,6 +8,7 @@
 #include <iostream>
 #include "FeupFlights.h"
 
+using namespace std;
 
 FeupFlights::FeupFlights() = default;
 
@@ -103,4 +104,47 @@ void FeupFlights::createFlightGraphTEST() {
 
 void FeupFlights::showEdgesTest() {
     this->flights.printEdgesTest();
+}
+
+double  FeupFlights::haversine(float lat1, float lon1, float lat2, float lon2) {
+    double dLat = (lat2 - lat1) *
+                  M_PI / 180.0;
+    double dLon = (lon2 - lon1) *
+                  M_PI / 180.0;
+
+    lat1 = (lat1) * M_PI / 180.0;
+    lat2 = (lat2) * M_PI / 180.0;
+
+    double a = pow(sin(dLat / 2), 2) +
+               pow(sin(dLon / 2), 2) *
+               cos(lat1) * cos(lat2);
+    double rad = 6371;
+    double c = 2 * asin(sqrt(a));
+    return rad * c;
+}
+
+vector<string> FeupFlights::allAirportsLessThan(int x, float lat, float lon) {
+    vector<string> res;
+    unordered_set<Airport>::iterator it;
+    for (it = airports.begin(); it != airports.end();it++){
+        float latAirport = it->getLatitude();
+        float lonAirport = it->getLongitude();
+        double distance = haversine(lat, lon, latAirport, lonAirport);
+        if (distance <= double(x)){
+            res.push_back(it->getCod());
+        }
+    }
+    return res;
+
+}
+
+vector<string> FeupFlights::allAirportsCity(string city, string country) {
+    vector<string> res;
+    unordered_set<Airport>::iterator it;
+    for (it = airports.begin(); it != airports.end();it++){
+        if (it->getCity() == city && it->getCountry() == country){
+            res.push_back(it->getCod());
+        }
+    }
+    return res;
 }
