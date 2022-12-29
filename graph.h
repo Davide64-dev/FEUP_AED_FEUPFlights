@@ -23,9 +23,11 @@ class Graph {
     };
 
     int n;
-    unordered_map<string, Node> nodes;
 
 public:
+
+    unordered_map<string, Node> nodes;
+
     Graph();
 
     Graph(const list<string>& nodes);
@@ -36,5 +38,6 @@ public:
 
     void addEdge(const string& source, string dest, string airline);
 
+    void printEdgesTest();
 };
 #endif //AED_PROJECT2_GRAPH_H

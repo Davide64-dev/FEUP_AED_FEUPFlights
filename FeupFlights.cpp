@@ -66,6 +66,32 @@ void FeupFlights::readAirports() {
     }
 }
 
+void FeupFlights::readFlights() {
+    vector<string> lineV(3);
+    ifstream in("../dataset/flights.csv");
+    string line, word;
+    string source, target, airline;
+
+    getline(in, line);
+    int i = 0;
+    while (getline(in, line)) {
+        lineV.clear();
+        istringstream iss(line);
+        while (getline(iss, word, ',')) {
+            lineV.push_back(word);
+        }
+        source= lineV[0];
+        target = lineV[1];
+        airline = lineV[2];
+
+        if (!airline.empty() && airline[airline.size() - 1] == '\r')
+            airline.erase(airline.size() - 1);
+        flights.addEdge(source, target, airline);
+    }
+
+
+}
+
 void FeupFlights::createFlightGraphTEST() {
     list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
     flights = Graph(airports);
@@ -73,4 +99,8 @@ void FeupFlights::createFlightGraphTEST() {
     flights.addEdge("test1", "test3", "al1");
     flights.addEdge("test2", "test5", "al2");
     flights.addEdge("test2", "test5", "al3");
+}
+
+void FeupFlights::showEdgesTest() {
+    this->flights.printEdgesTest();
 }

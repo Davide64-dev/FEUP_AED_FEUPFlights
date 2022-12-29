@@ -19,7 +19,9 @@ public:
     FeupFlights();
     void readAirlines();
     void readAirports();
+    void readFlights();
     void createFlightGraphTEST();
+    void showEdgesTest();
 };
 
 

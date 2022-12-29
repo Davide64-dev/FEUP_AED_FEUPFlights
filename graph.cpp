@@ -2,6 +2,7 @@
 // Created by Pedro on 28/12/2022.
 //
 
+#include <iostream>
 #include "graph.h"
 
 using namespace std;
@@ -35,6 +36,15 @@ void Graph::addEdge(const string& source, string dest, string airline) {
     if(nodes.find(source) != nodes.end())
         nodes[source].adj.push_back({dest, airline});
 }
+
+void Graph::printEdgesTest() {
+    for (auto node : nodes){
+        for (auto dest : node.second.adj){
+            cout << node.first << "," << dest.dest << "," << dest.airline << endl;
+        }
+    }
+}
+
 
 
 
