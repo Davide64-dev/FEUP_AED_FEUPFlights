@@ -106,6 +106,36 @@ void FeupFlights::createFlightGraphTEST() {
 void FeupFlights::bfsAndleastFlightsTEST() {
     list<string> result;
 
+    result = flights.leastFlights("OPO", "GVA");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights("OPO", "CDG");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights("OPO", "PEK");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights("OPO", "ORD");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights("OPO", "DAX");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights("OPO", "ANC");
+    for(string airport : result)
+        cout << airport << "->";
+    cout << "\n";
+    /*
     list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
     flights = Graph(airports);
     flights.addEdge("test1", "test2", "al1");
@@ -129,6 +159,7 @@ void FeupFlights::bfsAndleastFlightsTEST() {
     for(string airport : result)
         cout << airport << "->";
     cout << "\n";
+     */
 
 }
 
