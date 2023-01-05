@@ -5,6 +5,7 @@
 #include <iostream>
 #include <queue>
 #include "graph.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -48,7 +49,7 @@ void Graph::printEdgesTest() {
     }
 }
 
-void Graph::bfs(const string& source) {
+void Graph::bfs(const vector<string>& source) {
     queue<Node> unvisited_nodes;
 
     for(auto& node : nodes) {
@@ -56,25 +57,30 @@ void Graph::bfs(const string& source) {
         node.second.distance = -1;
         node.second.previous = "";
     }
-    nodes[source].distance = 0;
-    unvisited_nodes.push(nodes[source]);
+
+    for(const string& airport : source) {
+        nodes[airport].distance = 0;
+        nodes[airport].visited = true;
+        unvisited_nodes.push(nodes[airport]);
+    }
 
     while(!unvisited_nodes.empty()) {
-        Node nodeU = unvisited_nodes.front(); unvisited_nodes.pop();
+        Node nodeU = unvisited_nodes.front();
+        unvisited_nodes.pop();
         list<Edge> neighborsU = nodeU.adj;
         for(const Edge& edgeW : neighborsU) {
             string nodeW = edgeW.dest;
             if(!nodes[nodeW].visited) {
-                unvisited_nodes.push(nodes[nodeW]);
                 nodes[nodeW].visited = true;
                 nodes[nodeW].distance = nodeU.distance + 1;
                 nodes[nodeW].previous = nodeU.name;
+                unvisited_nodes.push(nodes[nodeW]);
             }
         }
     }
 }
 
-list<string> Graph::leastFlights(const string& source, const string& dest) {
+list<string> Graph::leastFlights(const vector<string>& source, const string& dest) {
     list<string> airports;
 
     bfs(source);
@@ -82,13 +88,41 @@ list<string> Graph::leastFlights(const string& source, const string& dest) {
         return airports;
 
     string airport = dest;
-    while(airport != source) {
+    while(nodes[airport].distance != 0) {
         airports.push_front(airport);
         airport = nodes[airport].previous;
     }
     airports.push_front(airport);
 
     return airports;
+}
+
+void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airlines) {
+    queue<Node> unvisited_nodes;
+
+    for(auto& node : nodes) {
+        node.second.visited = false;
+        node.second.distance = -1;
+        node.second.previous = "";
+    }
+    for(const string& airport : source) {
+        nodes[airport].distance = 0;
+        unvisited_nodes.push(nodes[airport]);
+    }
+
+    while(!unvisited_nodes.empty()) {
+        Node nodeU = unvisited_nodes.front(); unvisited_nodes.pop();
+        list<Edge> neighborsU = nodeU.adj;
+        for(const Edge& edgeW : neighborsU) {
+            string nodeW = edgeW.dest;
+            if(!nodes[nodeW].visited && find(airlines.begin(), airlines.end(), edgeW.airline) != airlines.end()) {
+                nodes[nodeW].visited = true;
+                nodes[nodeW].distance = nodeU.distance + 1;
+                nodes[nodeW].previous = nodeU.name;
+                unvisited_nodes.push(nodes[nodeW]);
+            }
+        }
+    }
 }
 
 
