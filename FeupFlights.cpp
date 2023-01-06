@@ -11,8 +11,16 @@
 
 using namespace std;
 
+/**
+ * Construtor da classe FeupFlights;
+ */
 FeupFlights::FeupFlights() = default;
 
+/**
+ * Método que lê o ficheiro airlines.csv, cria os objetos da classe Airline e adiciona-os ao unordered_set
+ *  airlines\n
+ *  Complexidade: O(n)
+ */
 void FeupFlights::readAirlines() {
     vector<string> lineV(3);
     ifstream in("../dataset/airlines.csv");
@@ -39,6 +47,11 @@ void FeupFlights::readAirlines() {
     }
 }
 
+/**
+ * Método que lê o ficheiro airports.csv, cria os objetos da classe Airport, adiciona-os ao unordered_set airports
+ * , para além de criar os vértices do grafo flights\n
+ * Complexidade: O(n)
+ */
 void FeupFlights::readAirports() {
     vector<string> lineV(6);
     ifstream in("../dataset/airports.csv");
@@ -68,6 +81,10 @@ void FeupFlights::readAirports() {
     }
 }
 
+/**
+ * Método que lê o ficheiro flights.csv e cria as arestas do grafo flights\n
+ * Complexidade: O(n)
+ */
 void FeupFlights::readFlights() {
     vector<string> lineV(3);
     ifstream in("../dataset/flights.csv");
@@ -166,7 +183,15 @@ void FeupFlights::bfsAndleastFlightsTEST() {
 void FeupFlights::showEdgesTest() {
     this->flights.printEdgesTest();
 }
-
+ /**
+  * Método que recebe as coordenadas geográficas de dois locais e calcula a distância entre eles\n
+  * Complexiade: O(1)
+  * @param lat1 Latitude do primeiro local
+  * @param lon1 Longitude do primeiro local
+  * @param lat2 Latitude do segundo local
+  * @param lon2 Longitude do segundo local
+  * @return Distância entre os locais
+  */
 double  FeupFlights::haversine(float lat1, float lon1, float lat2, float lon2) {
     double dLat = (lat2 - lat1) *
                   M_PI / 180.0;
@@ -184,6 +209,15 @@ double  FeupFlights::haversine(float lat1, float lon1, float lat2, float lon2) {
     return rad * c;
 }
 
+/**
+ * Método que recebe um valor x e dois valores que representam as coordenadas gepfráfias de um local e reotrna um vetor
+ * com todos os aeroportos que se encontram a uma distância inferior a x km\n
+ * Complexidade: O(n)
+ * @param x Máxima distância que é permitida na pesquisa, inclusive
+ * @param lat Latitude da localização
+ * @param lon Longitude da localização
+ * @return Retorna um vetor com todos os aeroportos a menos de x km
+ */
 vector<string> FeupFlights::allAirportsLessThan(int x, float lat, float lon) {
     vector<string> res;
     unordered_set<Airport>::iterator it;
@@ -199,6 +233,15 @@ vector<string> FeupFlights::allAirportsLessThan(int x, float lat, float lon) {
 
 }
 
+/**
+ * Método que recebe o nome de uma cidade e o país onde se encontra essa mesma cidade e retorna um vetor com todos
+ * os aeroportos que se encontram nessa mesma cidade\n
+ * Complexidade: O(n)
+ * Nota: É necessário passar o país como argumento porque há cidades com o mesmo nome em países diferentes
+ * @param city Nome da cidade
+ * @param country Nome do país
+ * @return Retorna um vetor com todos os aeroportos que se encontram na cidade dada
+ */
 vector<string> FeupFlights::allAirportsCity(string city, string country) {
     vector<string> res;
     unordered_set<Airport>::iterator it;
