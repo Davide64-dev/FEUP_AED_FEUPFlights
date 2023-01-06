@@ -11,9 +11,24 @@
 #include "Airport.h"
 #include "graph.h"
 
+/**
+ * Esta classe pretende representar a classe responsável por ter todos os algoritmos e de gerir as restantes classes
+ */
 class FeupFlights {
+
+    /**
+     * Hash table que contém todas as companhias aéreas
+     */
     unordered_set<Airline, HashAirline, HashAirline> airlines;
+
+    /**
+     * Hash table que contém todos os aeroportos
+     */
     unordered_set<Airport, HashAirport, HashAirport> airports;
+
+    /**
+     * Grafo com os aeroportos, assim como os voos entre eles
+     */
     Graph flights;
 public:
     FeupFlights();
