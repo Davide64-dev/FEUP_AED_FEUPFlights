@@ -5,6 +5,7 @@
 #include <iostream>
 #include <queue>
 #include "graph.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -78,7 +79,7 @@ void Graph::printEdgesTest() {
  *  Complexidade: O(|E|+|V|)
  * @param source Código do vértice sobre o qual se irá iniciar a pesquisa em largura
  */
-void Graph::bfs(const string& source) {
+void Graph::bfs(const vector<string>& source) {
     queue<Node> unvisited_nodes;
 
     for(auto& node : nodes) {
@@ -86,39 +87,85 @@ void Graph::bfs(const string& source) {
         node.second.distance = -1;
         node.second.previous = "";
     }
-    nodes[source].distance = 0;
-    unvisited_nodes.push(nodes[source]);
+
+    for(const string& airport : source) {
+        nodes[airport].distance = 0;
+        nodes[airport].visited = true;
+        unvisited_nodes.push(nodes[airport]);
+    }
 
     while(!unvisited_nodes.empty()) {
-        Node nodeU = unvisited_nodes.front(); unvisited_nodes.pop();
+        Node nodeU = unvisited_nodes.front();
+        unvisited_nodes.pop();
         list<Edge> neighborsU = nodeU.adj;
         for(const Edge& edgeW : neighborsU) {
             string nodeW = edgeW.dest;
             if(!nodes[nodeW].visited) {
-                unvisited_nodes.push(nodes[nodeW]);
                 nodes[nodeW].visited = true;
                 nodes[nodeW].distance = nodeU.distance + 1;
                 nodes[nodeW].previous = nodeU.name;
+                unvisited_nodes.push(nodes[nodeW]);
             }
         }
     }
 }
 
-list<string> Graph::leastFlights(const string& source, const string& dest) {
+list<string> Graph::leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines) {
     list<string> airports;
+    string airport;
+    int min = INT_MAX;
 
-    bfs(source);
-    if(nodes[dest].distance == -1)
+    //Chama bfs normal se não foram indicadas airlines.
+    if(airlines.empty())
+        bfs(source);
+    else
+        bfsAirLine(source, airlines);
+
+    //Determina qual destino é oq tem menor voos
+    for(const string& s : dest) {
+        if(nodes[s].distance != -1 && nodes[s].distance < min)
+            airport = s;
+    }
+
+    if(airport.empty())
         return airports;
 
-    string airport = dest;
-    while(airport != source) {
+
+    while(nodes[airport].distance != 0) {
         airports.push_front(airport);
         airport = nodes[airport].previous;
     }
     airports.push_front(airport);
 
     return airports;
+}
+
+void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airlines) {
+    queue<Node> unvisited_nodes;
+
+    for(auto& node : nodes) {
+        node.second.visited = false;
+        node.second.distance = -1;
+        node.second.previous = "";
+    }
+    for(const string& airport : source) {
+        nodes[airport].distance = 0;
+        unvisited_nodes.push(nodes[airport]);
+    }
+
+    while(!unvisited_nodes.empty()) {
+        Node nodeU = unvisited_nodes.front(); unvisited_nodes.pop();
+        list<Edge> neighborsU = nodeU.adj;
+        for(const Edge& edgeW : neighborsU) {
+            string nodeW = edgeW.dest;
+            if(!nodes[nodeW].visited && find(airlines.begin(), airlines.end(), edgeW.airline) != airlines.end()) {
+                nodes[nodeW].visited = true;
+                nodes[nodeW].distance = nodeU.distance + 1;
+                nodes[nodeW].previous = nodeU.name;
+                unvisited_nodes.push(nodes[nodeW]);
+            }
+        }
+    }
 }
 
 

@@ -93,8 +93,10 @@ public:
 
     void printEdgesTest();
 
-    void bfs(const string& source);
+    void bfs(const vector<string>& source);
 
-    list<string> leastFlights(const string& source, const string& dest);
+    list<string> leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines = {});
+
+    void bfsAirLine(const vector<string> &source, const vector<string> &airlines);
 };
 #endif //AED_PROJECT2_GRAPH_H
