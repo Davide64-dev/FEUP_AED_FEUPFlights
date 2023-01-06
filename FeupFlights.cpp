@@ -106,32 +106,37 @@ void FeupFlights::createFlightGraphTEST() {
 void FeupFlights::bfsAndleastFlightsTEST() {
     list<string> result;
 
-    result = flights.leastFlights({"OPO"}, "GVA");
+    result = flights.leastFlights({"OPO"}, {"GVA"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, "CDG");
+    result = flights.leastFlights({"OPO"}, {"CDG"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, "PEK");
+    result = flights.leastFlights({"OPO"}, {"PEK"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, "ORD");
+    result = flights.leastFlights({"OPO"}, {"ORD"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, "DAX");
+    result = flights.leastFlights({"OPO"}, {"DAX"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO", "YYZ"}, "DAX");
+    result = flights.leastFlights({"OPO", "YYZ"}, {"DAX"});
+    for(const string& airport : result)
+        cout << airport << "->";
+    cout << "\n";
+
+    result = flights.leastFlights({"OPO", "YYZ"}, {"DAX", "GVA"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";

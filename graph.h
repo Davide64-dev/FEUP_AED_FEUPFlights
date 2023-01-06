@@ -45,7 +45,7 @@ public:
 
     void bfs(const vector<string>& source);
 
-    list<string> leastFlights(const vector<string>& source, const string& dest);
+    list<string> leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines = {});
 
     void bfsAirLine(const vector<string> &source, const vector<string> &airlines);
 };

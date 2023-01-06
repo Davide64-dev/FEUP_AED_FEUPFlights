@@ -80,14 +80,27 @@ void Graph::bfs(const vector<string>& source) {
     }
 }
 
-list<string> Graph::leastFlights(const vector<string>& source, const string& dest) {
+list<string> Graph::leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines) {
     list<string> airports;
+    string airport;
+    int min = INT_MAX;
 
-    bfs(source);
-    if(nodes[dest].distance == -1)
+    //Chama bfs normal se não foram indicadas airlines.
+    if(airlines.empty())
+        bfs(source);
+    else
+        bfsAirLine(source, airlines);
+
+    //Determina qual destino é oq tem menor voos
+    for(const string& s : dest) {
+        if(nodes[s].distance != -1 && nodes[s].distance < min)
+            airport = s;
+    }
+
+    if(airport.empty())
         return airports;
 
-    string airport = dest;
+
     while(nodes[airport].distance != 0) {
         airports.push_front(airport);
         airport = nodes[airport].previous;
