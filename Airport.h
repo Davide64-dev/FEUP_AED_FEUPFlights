@@ -78,7 +78,7 @@ struct HashAirport
 
     /**
      * Equality Function a ser utilizada no unordered_set\n
-     * A Equality Function recebe duas companhias aéreas e retorna a igualdade como verdadeira se e somente se
+     * A Equality Function recebe dois aeroportos e retorna a igualdade como verdadeira se e somente se
      *  os seus cósigos IATA sejam iguais
      * @param b1 Primeiro Aeroporto
      * @param b2 Segundo Aeroporto

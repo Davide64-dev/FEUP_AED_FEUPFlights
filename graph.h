@@ -60,9 +60,17 @@ class Graph {
          * em que foi iniciada a pesquisa
          */
         int distance;
+
+        /**
+         * String que auxilia na pesquisa em largura (BFS) e permite ao vértice saber qual foi o vértice
+         *  que lhe precedeu na pesquisa
+         */
         string previous;
     };
 
+    /**
+     * Número de vértices do grafo
+     */
     int n;
 
 public:
