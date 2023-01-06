@@ -9,12 +9,40 @@
 
 using namespace std;
 
+/**
+ * Esta classe pretende representar um aeroporto
+ */
 class Airport {
+
+    /**
+     * Código IATA do areoporto
+     */
     string cod;
+
+    /**
+     * Nome do aeroporto
+     */
     string name;
+
+    /**
+     * Cidade onde se localiza o aeroporto
+     */
+
     string city;
+
+    /**
+     * País onde se localiza o aeroporto
+     */
     string country;
+
+    /**
+     * Latitude da localização
+     */
     float latitude;
+
+    /**
+     * Longitude da localização
+     */
     float longitude;
 
 public:
@@ -27,9 +55,18 @@ public:
     float getLongitude() const;
 };
 
+/**
+ * Struct auxliar utilizada no unordered_set "airports" na classe "FeupFlights"
+ */
 struct HashAirport
 {
-    // TODO
+    /**
+     * Hash Function a ser utilizada no unordered_set\n
+     * A Hash function recebe o código do aeroporto (3 letras) e gera um número inteiro que consiste
+     * na concatenação dos códigos ASCII de cada uma dos aeroportos, gerando um número inteiro único para cada código
+     * @param b Aeroporto sobre o qual irá ser aplicada a função hash
+     * @return Valor inteiro proveniente da concatenaçãodos códigos ASCII de cada um dos caracteres
+     */
     int operator() (const Airport& b) const {
         string temp = "";
         for (unsigned i = 0; i < 3;i++){
@@ -39,7 +76,14 @@ struct HashAirport
         return stoi(temp);
     }
 
-    // TODO
+    /**
+     * Equality Function a ser utilizada no unordered_set\n
+     * A Equality Function recebe duas companhias aéreas e retorna a igualdade como verdadeira se e somente se
+     *  os seus cósigos IATA sejam iguais
+     * @param b1 Primeiro Aeroporto
+     * @param b2 Segundo Aeroporto
+     * @return Valor boolean sobre a igualdade, ou diferença, dos aeroportos
+     */
     bool operator() (const Airport& b1, const Airport& b2) const {
         return b1.getCod() == b2.getCod();
     }

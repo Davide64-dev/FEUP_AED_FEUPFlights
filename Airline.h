@@ -13,6 +13,7 @@ using namespace std;
  * Esta classe pretende representar uma companhia aérea
  */
 class Airline {
+
     /**
      * Código ICAO da companhia aérea
      */
@@ -65,7 +66,7 @@ struct HashAirline
     /**
      * Equality Function a ser utilizada no unordered_set\n
      * A Equality Function recebe duas companhias aéreas e retorna a igualdade como verdadeira se e somente se
-     *  os seus códiso ICAO sejam iguais
+     *  os seus códigos ICAO sejam iguais
      * @param b1 Primeira Companhia Aérea
      * @param b2 Segunda Companhia Aérea
      * @return Valor boolean sobre a igualdade, ou diferença, das companhias aéreas
