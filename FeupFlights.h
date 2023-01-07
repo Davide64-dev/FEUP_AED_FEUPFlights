@@ -45,6 +45,9 @@ public:
     vector<string> allAirportsCity(string city, string country);
     Airport findAirport(string cod);
     Airline findAirline(string cod);
+    vector<string> allAirportsFromCountry(string country);
+    vector<string> allAirportsFromCity(string city);
+    vector<string> allAirlinesFromCountry(string country);
 };
 
 

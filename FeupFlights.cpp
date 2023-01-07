@@ -269,3 +269,56 @@ Airline FeupFlights::findAirline(std::string cod) {
     Airline res = *airlines.find(temp);
     return res;
 }
+/**
+ * Método que recebe o nome de um país e retorna um vetor com todos
+ * os aeroportos que se encontram nesse mesmo país\n
+ * Complexidade: O(n)
+ * @param country Nome do país
+ * @return Retorna um vetor com todos os aeroportos que se encontram nesse país
+ */
+vector<string> FeupFlights::allAirportsFromCountry(string country) {
+    vector<string> res;
+    unordered_set<Airport>::iterator it;
+    for (it = airports.begin(); it != airports.end();it++){
+        if ( it->getCountry() == country){
+            res.push_back(it->getCod());
+        }
+    }
+    return res;
+}
+
+/**
+ * Método que recebe o nome de uma cidade e retorna um vetor com todos
+ * os aeroportos que se encontram nessa mesma cidade\n
+ * Complexidade: O(n)
+ * @param country Nome do país
+ * @return Retorna um vetor com todos os aeroportos que se encontram nessa cidade
+ */
+vector<string> FeupFlights::allAirportsFromCity(string city) {
+    vector<string> res;
+    unordered_set<Airport>::iterator it;
+    for (it = airports.begin(); it != airports.end();it++){
+        if ( it->getCity() == city){
+            res.push_back(it->getCod());
+        }
+    }
+    return res;
+}
+
+/**
+ * Método que recebe o nome de um país e retorna um vetor com todas
+ * as companhias aereas desse mesmo país\n
+ * Complexidade: O(n)
+ * @param country Nome do país
+ * @return Retorna um vetor com todas as companhias aereas desse mesmo país
+ */
+vector<string> FeupFlights::allAirlinesFromCountry(string country){
+    vector<string> res;
+    unordered_set<Airline>::iterator it;
+    for (it = airlines.begin(); it != airlines.end();it++){
+        if ( it->getCountry() == country){
+            res.push_back(it->getCod());
+        }
+    }
+    return res;
+}
