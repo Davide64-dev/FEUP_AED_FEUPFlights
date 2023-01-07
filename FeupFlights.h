@@ -49,6 +49,12 @@ public:
     vector<string> allAirportsFromCity(string city);
     vector<string> allAirlinesFromCountry(string country);
     int manyFlights(string airport);
+    int differentAirlines(string airport);
+    int differentDestenies(string airport);
+    int differentCountries(string airport);
+    int airportsLessThanY(string airport, int y);
+    int citiesLessThanY(string airport, int y);
+    int countriesLessThanY(string airport, int y);
 };
 
 

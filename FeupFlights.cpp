@@ -298,3 +298,83 @@ vector<string> FeupFlights::allAirlinesFromCountry(string country){
 int FeupFlights::manyFlights(string airport) {
     return flights.nodes[airport].adj.size();
 }
+
+int FeupFlights::differentAirlines(string airport) {
+    unordered_map<string, int>temp;
+    auto it = flights.nodes[airport].adj.begin();
+    while(it != flights.nodes[airport].adj.end()){
+        temp[it->airline]++;
+        it++;
+    }
+    return temp.size();
+}
+
+int FeupFlights::differentDestenies(string airport) {
+    unordered_map<string, int>temp;
+    auto it = flights.nodes[airport].adj.begin();
+    while(it != flights.nodes[airport].adj.end()){
+        Airport aero = Airport(it->dest, "d", "d", "d", 1, 1);
+        temp[airports.find(aero)->getCity()]++;
+        it++;
+    }
+    return temp.size();
+}
+
+int FeupFlights::differentCountries(string airport) {
+    unordered_map<string, int>temp;
+    auto it = flights.nodes[airport].adj.begin();
+    while(it != flights.nodes[airport].adj.end()){
+        Airport aero = Airport(it->dest, "d", "d", "d", 1, 1);
+        temp[airports.find(aero)->getCountry()]++;
+        it++;
+    }
+    return temp.size();
+}
+
+int FeupFlights::airportsLessThanY(string airport, int y) {
+    int count = 0;
+    vector<string> ini;
+    ini.push_back(airport);
+    flights.bfs(ini);
+    auto it = airports.begin();
+    for (auto it : flights.nodes){
+        if (it.second.distance <= y){
+            count++;
+        }
+    }
+    return count;
+}
+
+int FeupFlights::citiesLessThanY(string airport, int y) {
+    unordered_map<string, int> count;
+    vector<string> ini;
+    ini.push_back(airport);
+    flights.bfs(ini);
+    auto it = airports.begin();
+    for (auto it : flights.nodes){
+        if (it.second.distance <= y){
+            string nome = it.second.name;
+            Airport aero = Airport(nome, "d", "d", "d", 1, 1);
+            Airport oi = *airports.find(aero);
+            count[oi.getCity()]++;
+        }
+    }
+    return count.size();
+}
+
+int FeupFlights::countriesLessThanY(string airport, int y) {
+    unordered_map<string, int> count;
+    vector<string> ini;
+    ini.push_back(airport);
+    flights.bfs(ini);
+    auto it = airports.begin();
+    for (auto it : flights.nodes){
+        if (it.second.distance <= y){
+            string nome = it.second.name;
+            Airport aero = Airport(nome, "d", "d", "d", 1, 1);
+            Airport oi = *airports.find(aero);
+            count[oi.getCountry()]++;
+        }
+    }
+    return count.size();
+}

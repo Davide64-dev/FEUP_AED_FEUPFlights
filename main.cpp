@@ -70,22 +70,83 @@ void info(FeupFlights& feup){
     cout << "   a - Quantas companhias aereas diferentes tem voos que comecam no "<< temp <<"?" << endl;
 
     cout << '\n';
-    cout << "   d - Para quantos destinos diferentes vão os voos do "<< temp <<"?" << endl;
+    cout << "   d - Para quantos destinos diferentes vao os voos do "<< temp <<"?" << endl;
 
     cout << '\n';
-    cout << "   r - Quantos aeroportos são atingíiveis com um maximo de Y voos? " << endl;
+    cout << "   p - Para quantos países diferentes vao os voos do " << temp << "?" << endl;
+
+    cout << '\n';
+    cout << "   r - Quantos aeroportos são atingiveis com um maximo de Y voos? " << endl;
 
     cout << '\n';
     cout << "   c- Quantas cidades são atingiveis com um maximo de Y voos? " << endl;
 
     cout << "\n";
-    cout << "   p - Quantos países são atingiveis com um máximode Y voos? " << endl;
+    cout << "   z - Quantos países são atingiveis com um máximode Y voos? " << endl;
 
     cout << "?";
     cin >> t;
 
     if (t == 'v'){
         int num = feup.manyFlights(temp);
+        cout << "\n" << "Existem " << num << " voos a partir de " << temp << endl;
+        cout << "\n";
+    }
+
+    if (t == 'a'){
+        int num = feup.differentAirlines(temp);
+        cout << "\n" << "Existem " << num << " companhias aereas diferentes a voar a partir de "
+        << temp << endl;
+        cout << "\n";
+    }
+
+    if (t == 'd'){
+        int num = feup.differentDestenies(temp);
+        cout << '\n' << "Com exatamente 1 voo, é possível chegar a exatamente " << num
+        << " destinos(cidades) diferentes"<< endl;
+        cout << "\n";
+    }
+
+    if (t == 'p'){
+        int num = feup.differentCountries(temp);
+        cout << '\n' << "Com exatamente 1 voo, é possível chegar a exatamente " << num
+             << " países diferentes"<< endl;
+        cout << "\n";
+    }
+
+    if (t == 'r'){
+        int y;
+        cout << '\n' << "       Inserir parametro Y: ";
+        cin >> y;
+
+        int num = feup.airportsLessThanY(temp, y);
+        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+             << " aeroportos diferentes"<< endl;
+        cout << "\n";
+    }
+
+    if (t == 'c'){
+        int y;
+        cout << '\n' << "       Inserir parametro Y: ";
+        cin >> y;
+
+        int num = feup.citiesLessThanY(temp, y);
+        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+             << " cidades diferentes"<< endl;
+        cout << "\n";
+    }
+
+    if (t == 'z'){
+        int y;
+
+        cout << '\n' << "       Inserir parametro Y: ";
+        cin >> y;
+
+        int num = feup.countriesLessThanY(temp, y);
+
+        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+             << " paises diferentes"<< endl;
+        cout << "\n";
     }
 }
 
@@ -233,16 +294,21 @@ char p(FeupFlights& feup){
         }
     }
     else{
-        cout << '\n';
-        while (*it != temp.back()) {
-            cout << feup.findAirport(*it).getName() << '\n';
-            cout << "   |              ";
-            list<string>::iterator rt = it;
-            rt++;
-            list<string> toPrint = feup.flights.allFlightsFrom(*it, *rt, airlines);
-            for (auto i : toPrint) cout << feup.findAirline(i).getName() << "     ";
-            cout << '\n' << "   V" << endl;
-            it++;
+        if (!temp.empty()) {
+            cout << '\n';
+            while (*it != temp.back()) {
+                cout << feup.findAirport(*it).getName() << '\n';
+                cout << "   |              ";
+                list<string>::iterator rt = it;
+                rt++;
+                list<string> toPrint = feup.flights.allFlightsFrom(*it, *rt, airlines);
+                for (auto i: toPrint) cout << feup.findAirline(i).getName() << "     ";
+                cout << '\n' << "   V" << endl;
+                it++;
+            }
+        }
+        else{
+            cout << "Nao foi possível encontrar voos" << endl;
         }
     }
     cout << feup.findAirport(*it).getName() << '\n';
