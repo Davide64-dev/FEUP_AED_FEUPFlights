@@ -152,7 +152,19 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
     }
     for(const string& airport : source) {
         nodes[airport].distance = 0;
+        nodes[airport].visited = true;
         unvisited_nodes.push(nodes[airport]);
+    }
+
+    unordered_map<string, Node> nodes = this->nodes;
+
+    for(auto& node : nodes) {
+        for(auto it = node.second.adj.begin(); it != node.second.adj.end();) {
+            if(find(airlines.begin(), airlines.end(), it->airline) == airlines.end())
+                it = node.second.adj.erase(it);
+            else
+                it++;
+        }
     }
 
     while(!unvisited_nodes.empty()) {
@@ -160,10 +172,14 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
         list<Edge> neighborsU = nodeU.adj;
         for(const Edge& edgeW : neighborsU) {
             string nodeW = edgeW.dest;
-            if(!nodes[nodeW].visited && find(airlines.begin(), airlines.end(), edgeW.airline) != airlines.end()) {
+            if(!nodes[nodeW].visited) {
                 nodes[nodeW].visited = true;
                 nodes[nodeW].distance = nodeU.distance + 1;
                 nodes[nodeW].previous = nodeU.name;
+
+                this->nodes[nodeW].visited = true;
+                this->nodes[nodeW].distance = nodeU.distance + 1;
+                this->nodes[nodeW].previous = nodeU.name;
                 unvisited_nodes.push(nodes[nodeW]);
             }
         }

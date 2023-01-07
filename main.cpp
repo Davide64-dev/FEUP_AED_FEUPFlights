@@ -22,6 +22,9 @@ int main() {
         cout << "" << "\n";
         cout << "p - Pesquisar Voo" << "\n";
 
+        cout << "\n";
+        cout << "T - TESTE" << "\n";
+
         cout << "" << "\n";
         cout << "i - Pesquisar informacoes sobre um aeroporto" << '\n';
 
@@ -34,6 +37,10 @@ int main() {
         if (op == 'p'){
             char part = p(feup);
             if (part == 'q') op = ' ';
+        }
+
+        if (op == 'T'){
+            feup.bfsAndleastFlightsTEST();
         }
 
         if (op == 'i'){

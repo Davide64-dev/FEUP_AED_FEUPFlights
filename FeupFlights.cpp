@@ -123,40 +123,12 @@ void FeupFlights::createFlightGraphTEST() {
 void FeupFlights::bfsAndleastFlightsTEST() {
     list<string> result;
 
-    result = flights.leastFlights({"OPO"}, {"GVA"});
+    result = flights.leastFlights({"OPO"}, {"LHR"}, {"TAP"});
     for(const string& airport : result)
         cout << airport << "->";
     cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, {"CDG"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
 
-    result = flights.leastFlights({"OPO"}, {"PEK"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    result = flights.leastFlights({"OPO"}, {"ORD"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    result = flights.leastFlights({"OPO"}, {"DAX"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    result = flights.leastFlights({"OPO", "YYZ"}, {"DAX"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    result = flights.leastFlights({"OPO", "YYZ"}, {"DAX", "GVA"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
     /*
     list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
     flights = Graph(airports);
