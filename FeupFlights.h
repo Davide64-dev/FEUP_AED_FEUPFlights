@@ -16,9 +16,11 @@
  */
 class FeupFlights {
 
+public:
+
     /**
-     * Hash table que contém todas as companhias aéreas
-     */
+    * Hash table que contém todas as companhias aéreas
+    */
     unordered_set<Airline, HashAirline, HashAirline> airlines;
 
     /**
@@ -30,7 +32,7 @@ class FeupFlights {
      * Grafo com os aeroportos, assim como os voos entre eles
      */
     Graph flights;
-public:
+
     FeupFlights();
     void readAirlines();
     void readAirports();
