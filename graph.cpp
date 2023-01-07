@@ -150,11 +150,6 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
         node.second.distance = -1;
         node.second.previous = "";
     }
-    for(const string& airport : source) {
-        nodes[airport].distance = 0;
-        nodes[airport].visited = true;
-        unvisited_nodes.push(nodes[airport]);
-    }
 
     unordered_map<string, Node> nodes = this->nodes;
 
@@ -165,6 +160,15 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
             else
                 it++;
         }
+    }
+
+    for(const string& airport : source) {
+        nodes[airport].distance = 0;
+        nodes[airport].visited = true;
+
+        this->nodes[airport].distance = 0;
+        this->nodes[airport].visited = true;
+        unvisited_nodes.push(nodes[airport]);
     }
 
     while(!unvisited_nodes.empty()) {
