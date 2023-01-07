@@ -48,6 +48,7 @@ public:
     vector<string> allAirportsFromCountry(string country);
     vector<string> allAirportsFromCity(string city);
     vector<string> allAirlinesFromCountry(string country);
+    int manyFlights(string airport);
 };
 
 

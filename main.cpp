@@ -2,6 +2,7 @@
 #include <vector>
 #include "FeupFlights.h"
 char p(FeupFlights& feup);
+void info(FeupFlights& feup);
 vector<string> pesquisaCidade(FeupFlights& feup);
 vector<string> codAeroporto(FeupFlights& feup);
 vector<string> pesquisaCoordenadas(FeupFlights& feup);
@@ -16,10 +17,13 @@ int main() {
 
     while (op != 'q'){
         cout << "" << '\n';
-        cout << "q- Sair" << "\n";
+        cout << "q - Sair" << "\n";
 
         cout << "" << "\n";
         cout << "p - Pesquisar Voo" << "\n";
+
+        cout << "" << "\n";
+        cout << "i - Pesquisar informacoes sobre um aeroporto" << '\n';
 
         cout << "" << "\n";
         cout << "?";
@@ -32,10 +36,52 @@ int main() {
             if (part == 'q') op = ' ';
         }
 
+        if (op == 'i'){
+            info(feup);
+        }
+
     }
     return 0;
 
 }
+
+void info(FeupFlights& feup){
+    string temp;
+    char t;
+    cout << "  Inserir código do aeroporto: ";
+    cin >> temp;
+    Airport airport = Airport(temp, "fsc", "dwsc", "wvdscx", 34,34);
+    if (feup.airports.find(airport) == feup.airports.end()){
+        cout << "Inserir aeroporto valido!" << endl;
+        return;
+    }
+
+    cout << "\n";
+    cout  << "   v - Quantos voos existem a partir do "<< temp << "?" << endl;
+
+    cout << "\n";
+    cout << "   a - Quantas companhias aereas diferentes tem voos que comecam no "<< temp <<"?" << endl;
+
+    cout << '\n';
+    cout << "   d - Para quantos destinos diferentes vão os voos do "<< temp <<"?" << endl;
+
+    cout << '\n';
+    cout << "   r - Quantos aeroportos são atingíiveis com um maximo de Y voos? " << endl;
+
+    cout << '\n';
+    cout << "   c- Quantas cidades são atingiveis com um maximo de Y voos? " << endl;
+
+    cout << "\n";
+    cout << "   p - Quantos países são atingiveis com um máximode Y voos? " << endl;
+
+    cout << "?";
+    cin >> t;
+
+    if (t == 'v'){
+        int num = feup.manyFlights(temp);
+    }
+}
+
 
 char p(FeupFlights& feup){
     string iguais = "===============================================";

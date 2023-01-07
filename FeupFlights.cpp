@@ -322,3 +322,7 @@ vector<string> FeupFlights::allAirlinesFromCountry(string country){
     }
     return res;
 }
+
+int FeupFlights::manyFlights(string airport) {
+    return flights.nodes[airport].adj.size();
+}
