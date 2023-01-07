@@ -123,8 +123,10 @@ list<string> Graph::leastFlights(const vector<string>& source, const vector<stri
 
     //Determina qual destino é oq tem menor voos
     for(const string& s : dest) {
-        if(nodes[s].distance != -1 && nodes[s].distance < min)
+        if(nodes[s].distance != -1 && nodes[s].distance < min) {
             airport = s;
+            min = nodes[s].distance;
+        }
     }
 
     if(airport.empty())
