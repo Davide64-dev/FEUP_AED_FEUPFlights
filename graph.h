@@ -8,6 +8,7 @@
 #include <string>
 #include <list>
 #include <unordered_map>
+#include "airport.h"
 
 using namespace std;
 
@@ -93,10 +94,16 @@ public:
 
     void printEdgesTest();
 
+
     void bfs(const vector<string>& source);
 
     list<string> leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines = {});
 
     void bfsAirLine(const vector<string> &source, const vector<string> &airlines);
+
+    list<string> allFlightsFrom(string cod1, string cod2, list<string> from);
+
+    list<string> allFlights(string cod1, string cod2);
+
 };
 #endif //AED_PROJECT2_GRAPH_H

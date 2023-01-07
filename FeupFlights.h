@@ -43,6 +43,8 @@ public:
     double haversine(float lat1, float lon1, float lat2, float lon2);
     vector<string> allAirportsLessThan(int x, float lat, float lon);
     vector<string> allAirportsCity(string city, string country);
+    Airport findAirport(string cod);
+    Airline findAirline(string cod);
 };
 
 

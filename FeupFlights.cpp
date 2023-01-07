@@ -257,3 +257,15 @@ vector<string> FeupFlights::allAirportsCity(string city, string country) {
     }
     return res;
 }
+
+Airport FeupFlights::findAirport(std::string cod) {
+    Airport temp = Airport(cod, "cdws", "fdasdv", "dvs", 234, 1234);
+    Airport res = *airports.find(temp);
+    return res;
+}
+
+Airline FeupFlights::findAirline(std::string cod) {
+    Airline temp = Airline(cod, "xvsd", "dfsx", "dfsvx");
+    Airline res = *airlines.find(temp);
+    return res;
+}

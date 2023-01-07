@@ -33,6 +33,7 @@ int main() {
         }
 
     }
+    return 0;
 
 }
 
@@ -161,16 +162,29 @@ char p(FeupFlights& feup){
         }
         cout << iguais << '\n';
     }
-
-    list<string> temp = feup.flights.leastFlights(partidas, chegadas, airlines);
+    list<string> temp;
+    if (airlines.empty()){
+        temp = feup.flights.leastFlights(partidas, chegadas);
+    }
+    else {
+        temp = feup.flights.leastFlights(partidas, chegadas, airlines);
+    }
     list<string>::iterator it = temp.begin();
 
-    cout << '\n';
-    while (*it != temp.back()){
-        cout << *it << "->";
-        it++;
+    if (airlines.empty()) {
+        cout << '\n';
+        while (*it != temp.back()) {
+            cout << feup.findAirport(*it).getName() << '\n';
+            cout << "   |              ";
+            list<string>::iterator rt = it;
+            rt++;
+            list<string> toPrint = feup.flights.allFlights(*it, *rt);
+            for (auto i : toPrint) cout << feup.findAirline(i).getName() << "     ";
+            cout << '\n' << "   V" << endl;
+            it++;
+        }
     }
-    cout << *it << '\n';
+    cout << feup.findAirport(*it).getName() << '\n';
     return retorno;
 }
 
@@ -187,11 +201,24 @@ vector<string> codAeroporto(FeupFlights& feup){
 }
 
 vector<string> pesquisaCidade(FeupFlights& feup){
-    string cidade, pais;
-    cout<< "Inserir nome da cidade: ";
+    string cidade;
+    string pais;
+    cout<< "Inserir nome da cidade (Se a cidade tiver espaços, deve substitui-los por '_'): ";
     cin >> cidade;
-    cout << "Inserir nome do pais: ";
+
+    for (int i = 0; i < cidade.size();i++){
+        if (cidade[i] == '_') cidade[i] = ' ';
+    }
+
+
+    cout << "Inserir nome do pais (Se o pais tiver espaços, deve substitui-los por '_'): ";
     cin >> pais;
+
+    for (int i = 0; i < pais.size();i++){
+        if (pais[i] == '_') pais[i] = ' ';
+    }
+
+
     vector<string> aeroportos = feup.allAirportsCity(cidade, pais);
     return aeroportos;
 }

@@ -168,5 +168,26 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
     }
 }
 
+list<string> Graph::allFlightsFrom(string cod1, string cod2, list<string> from) {
+    list<string> res;
+    Node node = nodes[cod1];
+    for (auto i : node.adj){
+        if (i.dest == cod2 && find(from.begin(), from.end(),i.airline) != from.end()){
+            res.push_back(i.airline);
+        }
+    }
+    return res;
+}
+
+list<string> Graph::allFlights(string cod1, string cod2) {
+    list<string> res;
+    Node node = nodes[cod1];
+    for (auto i : node.adj){
+        if (i.dest == cod2){
+            res.push_back(i.airline);
+        }
+    }
+    return res;
+}
 
 
