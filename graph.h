@@ -101,7 +101,7 @@ public:
 
     void bfsAirLine(const vector<string> &source, const vector<string> &airlines);
 
-    list<string> allFlightsFrom(string cod1, string cod2, list<string> from);
+    list<string> allFlightsFrom(string cod1, string cod2, vector<string> from);
 
     list<string> allFlights(string cod1, string cod2);
 

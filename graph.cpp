@@ -186,7 +186,7 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
     }
 }
 
-list<string> Graph::allFlightsFrom(string cod1, string cod2, list<string> from) {
+list<string> Graph::allFlightsFrom(string cod1, string cod2, vector<string> from) {
     list<string> res;
     Node node = nodes[cod1];
     for (auto i : node.adj){

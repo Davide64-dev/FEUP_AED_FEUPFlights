@@ -216,12 +216,7 @@ char p(FeupFlights& feup){
         cout << iguais << '\n';
     }
     list<string> temp;
-    if (airlines.empty()){
-        temp = feup.flights.leastFlights(partidas, chegadas);
-    }
-    else {
-        temp = feup.flights.leastFlights(partidas, chegadas, airlines);
-    }
+    temp = feup.flights.leastFlights(partidas, chegadas, airlines);
     list<string>::iterator it = temp.begin();
 
     if (airlines.empty()) {
@@ -232,6 +227,19 @@ char p(FeupFlights& feup){
             list<string>::iterator rt = it;
             rt++;
             list<string> toPrint = feup.flights.allFlights(*it, *rt);
+            for (auto i : toPrint) cout << feup.findAirline(i).getName() << "     ";
+            cout << '\n' << "   V" << endl;
+            it++;
+        }
+    }
+    else{
+        cout << '\n';
+        while (*it != temp.back()) {
+            cout << feup.findAirport(*it).getName() << '\n';
+            cout << "   |              ";
+            list<string>::iterator rt = it;
+            rt++;
+            list<string> toPrint = feup.flights.allFlightsFrom(*it, *rt, airlines);
             for (auto i : toPrint) cout << feup.findAirline(i).getName() << "     ";
             cout << '\n' << "   V" << endl;
             it++;
