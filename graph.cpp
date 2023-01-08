@@ -11,7 +11,7 @@ using namespace std;
 
 /**
  * Construtor da classe Grafo\n
- * Trata-se de um construtor que não recebe argumentos e criar um grafo sem vértices nem arestas
+ * Trata-se de um construtor que não recebe argumentos e cria um grafo sem vértices nem arestas
  */
 Graph::Graph() {
     this->nodes.clear();
@@ -65,14 +65,6 @@ void Graph::addEdge(const string& source, string dest, string airline) {
         nodes[source].adj.push_back({dest, airline});
 }
 
-void Graph::printEdgesTest() {
-    for (auto node : nodes){
-        for (auto dest : node.second.adj){
-            cout << node.first << "," << dest.dest << "," << dest.airline << endl;
-        }
-    }
-}
-
 /**
  * Algoritmo BFS (Pesquisa em Largura) que nos permite percorrer todos os vértices do grafo por ordem de distância
  *  vértice escolhido\n
@@ -110,6 +102,16 @@ void Graph::bfs(const vector<string>& source) {
     }
 }
 
+/**
+ * Algoritmo que recebe todas as possibilidades de partida, destino e de companhias aéreas e retorna todo o percurso
+ *  entre um aeroporto e o outro - Percurso com menos escalas que obedeça a todas essas condições\n
+ *  Complexidade: O(|E|+|V|)
+ * @param source Vetor com todos os aeroportos que foram selecionados como possibilidades de partida
+ * @param dest Vetor com todos os aeroportos que foram selecionados como possiblidades de chegada
+ * @param airlines Vetor com todas as airlines que podem ser utilizadas no percurso - Se o vetor estiver vazio,
+ * é assumido que se podem utilizar todas as companhias existentes
+ * @return Vetor ordenado com o percurso de aeroportos de um ponto de partida a um ponto de chegada
+ */
 list<string> Graph::leastFlights(const vector<string>& source, const vector<string>& dest, const vector<string>& airlines) {
     list<string> airports;
     string airport;
@@ -142,6 +144,12 @@ list<string> Graph::leastFlights(const vector<string>& source, const vector<stri
     return airports;
 }
 
+/**
+ * Método bfs especifico que é utilizando quando se quer restringir as companhias aereas a serem utilizadas\n
+ * Complexidade: O(|E|+|V|)
+ * @param source Vetor com todas as possiblidades de partida
+ * @param airlines Vetor com todas as companhias aeres que podem ser utilizadas
+ */
 void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airlines) {
     queue<Node> unvisited_nodes;
 
@@ -190,6 +198,15 @@ void Graph::bfsAirLine(const vector<string>& source, const vector<string>& airli
     }
 }
 
+/**
+ * Método que recebe o código de dois aeroportos e as companhias aereas que podem ser utilizadas e
+ * retorna um vetor com todos os voos de um local para o outro\n
+ * Complexidade: O(|E|)
+ * @param cod1 Código do primeiro aeroporto
+ * @param cod2 Código do segundo aeroporto
+ * @param from Vetor com as companhias aereas que podem ser utilizadas
+ * @return Todas as companhias aéreas que realizam o voo de um local para o outro;
+ */
 list<string> Graph::allFlightsFrom(string cod1, string cod2, vector<string> from) {
     list<string> res;
     Node node = nodes[cod1];
@@ -201,6 +218,13 @@ list<string> Graph::allFlightsFrom(string cod1, string cod2, vector<string> from
     return res;
 }
 
+/**
+ * Método que recebe o código de dois aeroportos e retorna todas as companhias aereas que fazem o percurso\n
+ * Complexidade: O(|E|)
+ * @param cod1 Código do primeiro aeroporto
+ * @param cod2 Código do segundo aeroporto
+ * @return Todas as companhias aereas que realizam o percurso dado
+ */
 list<string> Graph::allFlights(string cod1, string cod2) {
     list<string> res;
     Node node = nodes[cod1];

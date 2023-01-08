@@ -63,7 +63,8 @@ struct HashAirport
     /**
      * Hash Function a ser utilizada no unordered_set\n
      * A Hash function recebe o código do aeroporto (3 letras) e gera um número inteiro que consiste
-     * na concatenação dos códigos ASCII de cada uma dos aeroportos, gerando um número inteiro único para cada código
+     * na concatenação dos códigos ASCII de cada uma das letras do código, gerando um número inteiro único para cada código\n
+     * Complexidade: O(1)
      * @param b Aeroporto sobre o qual irá ser aplicada a função hash
      * @return Valor inteiro proveniente da concatenaçãodos códigos ASCII de cada um dos caracteres
      */
@@ -79,7 +80,8 @@ struct HashAirport
     /**
      * Equality Function a ser utilizada no unordered_set\n
      * A Equality Function recebe dois aeroportos e retorna a igualdade como verdadeira se e somente se
-     *  os seus cósigos IATA sejam iguais
+     *  os seus cósigos IATA sejam iguais\n
+     *  Complexidade: O(1)
      * @param b1 Primeiro Aeroporto
      * @param b2 Segundo Aeroporto
      * @return Valor boolean sobre a igualdade, ou diferença, dos aeroportos

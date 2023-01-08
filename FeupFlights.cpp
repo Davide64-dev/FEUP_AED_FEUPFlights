@@ -49,7 +49,7 @@ void FeupFlights::readAirlines() {
 
 /**
  * Método que lê o ficheiro airports.csv, cria os objetos da classe Airport, adiciona-os ao unordered_set airports
- * , para além de criar os vértices do grafo flights\n
+ *, para além de criar os vértices do grafo flights\n
  * Complexidade: O(n)
  */
 void FeupFlights::readAirports() {
@@ -111,55 +111,6 @@ void FeupFlights::readFlights() {
 
 }
 
-void FeupFlights::createFlightGraphTEST() {
-    list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
-    flights = Graph(airports);
-    flights.addEdge("test1", "test2", "al1");
-    flights.addEdge("test1", "test3", "al1");
-    flights.addEdge("test2", "test5", "al2");
-    flights.addEdge("test2", "test5", "al3");
-}
-
-void FeupFlights::bfsAndleastFlightsTEST() {
-    list<string> result;
-
-    result = flights.leastFlights({"OPO"}, {"LHR"}, {"TAP"});
-    for(const string& airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-
-    /*
-    list<string> airports = {"test1", "test2", "test3", "test4", "test5"};
-    flights = Graph(airports);
-    flights.addEdge("test1", "test2", "al1");
-    flights.addEdge("test2", "test3", "al1");
-    flights.addEdge("test3", "test4", "al1");
-    flights.addEdge("test4", "test5", "al1");
-
-    result = flights.leastFlights("test1", "test5");
-    for(string airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    flights.addEdge("test1", "test3", "al1");
-    result = flights.leastFlights("test1", "test5");
-    for(string airport : result)
-        cout << airport << "->";
-    cout << "\n";
-
-    flights.addEdge("test1", "test5", "al1");
-    result = flights.leastFlights("test1", "test5");
-    for(string airport : result)
-        cout << airport << "->";
-    cout << "\n";
-     */
-
-}
-
-void FeupFlights::showEdgesTest() {
-    this->flights.printEdgesTest();
-}
  /**
   * Método que recebe as coordenadas geográficas de dois locais e calcula a distância entre eles\n
   * Complexiade: O(1)
@@ -187,7 +138,7 @@ double  FeupFlights::haversine(float lat1, float lon1, float lat2, float lon2) {
 }
 
 /**
- * Método que recebe um valor x e dois valores que representam as coordenadas gepfráfias de um local e reotrna um vetor
+ * Método que recebe um valor x e dois valores que representam as coordenadas geográficas de um local e retorna um vetor
  * com todos os aeroportos que se encontram a uma distância inferior a x km\n
  * Complexidade: O(n)
  * @param x Máxima distância que é permitida na pesquisa, inclusive
@@ -212,7 +163,7 @@ vector<string> FeupFlights::allAirportsLessThan(int x, float lat, float lon) {
 
 /**
  * Método que recebe o nome de uma cidade e o país onde se encontra essa mesma cidade e retorna um vetor com todos
- * os aeroportos que se encontram nessa mesma cidade\n
+ * os aeroportos que se encontram nessa cidade\n
  * Complexidade: O(n)
  * Nota: É necessário passar o país como argumento porque há cidades com o mesmo nome em países diferentes
  * @param city Nome da cidade
@@ -230,75 +181,46 @@ vector<string> FeupFlights::allAirportsCity(string city, string country) {
     return res;
 }
 
+/**
+ * Método que recebe o código de um aeroporto e realiza a pesquisa no unordered_set airports\n
+ * Complexidade: O(1)
+ * @param cod Código do aeroporto
+ * @return Aeroporto correspondente ao código
+ */
 Airport FeupFlights::findAirport(std::string cod) {
     Airport temp = Airport(cod, "cdws", "fdasdv", "dvs", 234, 1234);
     Airport res = *airports.find(temp);
     return res;
 }
 
+/**
+ * Método que recebe o código de uma companhia aérea e realiza a sua pesquisa no unordered_set airlines\n
+ * Complexidade: O(1)
+ * @param cod Código da companhia aérea
+ * @return Companhia aérea correspondente
+ */
 Airline FeupFlights::findAirline(std::string cod) {
     Airline temp = Airline(cod, "xvsd", "dfsx", "dfsvx");
     Airline res = *airlines.find(temp);
     return res;
 }
-/**
- * Método que recebe o nome de um país e retorna um vetor com todos
- * os aeroportos que se encontram nesse mesmo país\n
- * Complexidade: O(n)
- * @param country Nome do país
- * @return Retorna um vetor com todos os aeroportos que se encontram nesse país
- */
-vector<string> FeupFlights::allAirportsFromCountry(string country) {
-    vector<string> res;
-    unordered_set<Airport>::iterator it;
-    for (it = airports.begin(); it != airports.end();it++){
-        if ( it->getCountry() == country){
-            res.push_back(it->getCod());
-        }
-    }
-    return res;
-}
 
 /**
- * Método que recebe o nome de uma cidade e retorna um vetor com todos
- * os aeroportos que se encontram nessa mesma cidade\n
- * Complexidade: O(n)
- * @param country Nome do país
- * @return Retorna um vetor com todos os aeroportos que se encontram nessa cidade
+ * Método usado para descobrir o número de voos que partem de um dado aeroporto\n
+ * Complexidade: O(1)
+ * @param airport Código do aeroporto onde se realizará a pesquisa
+ * @return Número de voos que partem do dado aeroporto
  */
-vector<string> FeupFlights::allAirportsFromCity(string city) {
-    vector<string> res;
-    unordered_set<Airport>::iterator it;
-    for (it = airports.begin(); it != airports.end();it++){
-        if ( it->getCity() == city){
-            res.push_back(it->getCod());
-        }
-    }
-    return res;
-}
-
-/**
- * Método que recebe o nome de um país e retorna um vetor com todas
- * as companhias aereas desse mesmo país\n
- * Complexidade: O(n)
- * @param country Nome do país
- * @return Retorna um vetor com todas as companhias aereas desse mesmo país
- */
-vector<string> FeupFlights::allAirlinesFromCountry(string country){
-    vector<string> res;
-    unordered_set<Airline>::iterator it;
-    for (it = airlines.begin(); it != airlines.end();it++){
-        if ( it->getCountry() == country){
-            res.push_back(it->getCod());
-        }
-    }
-    return res;
-}
-
 int FeupFlights::manyFlights(string airport) {
     return flights.nodes[airport].adj.size();
 }
 
+/**
+ * Método usado para descobrir o número de companhias aéreas que têm voos que partem a partir de um dado aeroporto\n
+ * Complexidade: O(|E|)
+ * @param airport Código do aeroporto
+ * @return Número de companhias diferentes que voam a partir do dado aeroporto
+ */
 int FeupFlights::differentAirlines(string airport) {
     unordered_map<string, int>temp;
     auto it = flights.nodes[airport].adj.begin();
@@ -309,6 +231,12 @@ int FeupFlights::differentAirlines(string airport) {
     return temp.size();
 }
 
+/**
+ * Método usado para descobrir o número de destinos (cidades) diferentes que é possível atingir utilizando um voo\n
+ * Complexidade: O(|E|)
+ * @param airport Código do aeroporto
+ * @return Número de destinos diferentes
+ */
 int FeupFlights::differentDestenies(string airport) {
     unordered_map<string, int>temp;
     auto it = flights.nodes[airport].adj.begin();
@@ -320,6 +248,12 @@ int FeupFlights::differentDestenies(string airport) {
     return temp.size();
 }
 
+/**
+ * Método usado para descobrir o número de paises diferentes que é possóvel atingir utilizando um voo\n
+ * Complexidade: O(|E|)
+ * @param airport Código do aeroporto
+ * @return Número de países
+ */
 int FeupFlights::differentCountries(string airport) {
     unordered_map<string, int>temp;
     auto it = flights.nodes[airport].adj.begin();
@@ -331,6 +265,14 @@ int FeupFlights::differentCountries(string airport) {
     return temp.size();
 }
 
+/**
+ * Método utilizado para descobrir quantos aeroportos são possíveis atingir a partir de um aeroporto dado com um
+ *  máximo de Y voos - Utiliza uma pesquisa em largura\n
+ *  Complexidade: O(|E|+|V|)
+ * @param airport Aeroporto onde irá ser feita a pesquisa
+ * @param y Parâmetro Y
+ * @return Número de aeroportos atingíveis
+ */
 int FeupFlights::airportsLessThanY(string airport, int y) {
     int count = 0;
     vector<string> ini;
@@ -345,6 +287,14 @@ int FeupFlights::airportsLessThanY(string airport, int y) {
     return count;
 }
 
+/**
+ * Método utilizado para descobrir quantas cidades são atingíveis a partir de um dado aeroporto com um máximo de
+ *  Y voos - Utiliza uma pesquisa em largura\n
+ *  Complexidade: O(|E|+|V|)
+ * @param airport Aeroporto onde irá ser feita a pesquisa
+ * @param y Parâmetro Y
+ * @return Número de cidades atingíveis
+ */
 int FeupFlights::citiesLessThanY(string airport, int y) {
     unordered_map<string, int> count;
     vector<string> ini;
@@ -361,7 +311,14 @@ int FeupFlights::citiesLessThanY(string airport, int y) {
     }
     return count.size();
 }
-
+/**
+ * Método utilizado para descobrir quantos paises são atingiveis a partir de um dado aeroporto com um máximo
+ * de Y voos - Utiliza uma pesquisa em largura\n
+ * Complexidade: O(|E|+|V|)
+ * @param airport Aeroporto onde irá ser feita a pesquisa
+ * @param y Parâmetro Y
+ * @return Número de países atingíveis
+ */
 int FeupFlights::countriesLessThanY(string airport, int y) {
     unordered_map<string, int> count;
     vector<string> ini;

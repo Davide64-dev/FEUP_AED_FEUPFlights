@@ -37,17 +37,11 @@ public:
     void readAirlines();
     void readAirports();
     void readFlights();
-    void createFlightGraphTEST();
-    void bfsAndleastFlightsTEST();
-    void showEdgesTest();
     double haversine(float lat1, float lon1, float lat2, float lon2);
     vector<string> allAirportsLessThan(int x, float lat, float lon);
     vector<string> allAirportsCity(string city, string country);
     Airport findAirport(string cod);
     Airline findAirline(string cod);
-    vector<string> allAirportsFromCountry(string country);
-    vector<string> allAirportsFromCity(string city);
-    vector<string> allAirlinesFromCountry(string country);
     int manyFlights(string airport);
     int differentAirlines(string airport);
     int differentDestenies(string airport);

@@ -15,7 +15,7 @@ using namespace std;
 /**
  * Esta classe é utilizada para representar um grafo, com todos os atributos necessários para representar
  *  cada um dos voos nas arestas do grafo e cada um dos aeroportos nos vértices\n
- * Esta classe é uma estensão da classe Graph que nos foi providenciada nas aulas TP desta UC
+ * Esta classe é uma extensão da classe Graph que nos foi providenciada nas aulas TP desta UC
  */
 class Graph {
 
@@ -91,9 +91,6 @@ public:
     void addNode(string node);
 
     void addEdge(const string& source, string dest, string airline);
-
-    void printEdgesTest();
-
 
     void bfs(const vector<string>& source);
 

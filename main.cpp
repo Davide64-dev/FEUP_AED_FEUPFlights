@@ -22,9 +22,6 @@ int main() {
         cout << "" << "\n";
         cout << "p - Pesquisar Voo" << "\n";
 
-        cout << "\n";
-        cout << "T - TESTE" << "\n";
-
         cout << "" << "\n";
         cout << "i - Pesquisar informacoes sobre um aeroporto" << '\n';
 
@@ -37,10 +34,6 @@ int main() {
         if (op == 'p'){
             char part = p(feup);
             if (part == 'q') op = ' ';
-        }
-
-        if (op == 'T'){
-            feup.bfsAndleastFlightsTEST();
         }
 
         if (op == 'i'){
@@ -83,6 +76,9 @@ void info(FeupFlights& feup){
 
     cout << "\n";
     cout << "   z - Quantos países são atingiveis com um máximode Y voos? " << endl;
+
+    cout << "\n";
+    cout << "   q - Recuar" << endl;
 
     cout << "?";
     cin >> t;
@@ -147,6 +143,10 @@ void info(FeupFlights& feup){
         cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
              << " paises diferentes"<< endl;
         cout << "\n";
+    }
+
+    if (t == 'q'){
+        return;
     }
 }
 
