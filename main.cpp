@@ -330,7 +330,7 @@ vector<string> codAeroporto(FeupFlights& feup){
 vector<string> pesquisaCidade(FeupFlights& feup){
     string cidade;
     string pais;
-    cout<< "Inserir nome da cidade (Se a cidade tiver espaços, deve substitui-los por '_'): ";
+    cout<< "Inserir nome da cidade (Se a cidade tiver espacos, deve substitui-los por '_'): ";
     cin >> cidade;
 
     for (int i = 0; i < cidade.size();i++){
@@ -338,7 +338,7 @@ vector<string> pesquisaCidade(FeupFlights& feup){
     }
 
 
-    cout << "Inserir nome do pais (Se o pais tiver espaços, deve substitui-los por '_'): ";
+    cout << "Inserir nome do pais (Se o pais tiver espacos, deve substitui-los por '_'): ";
     cin >> pais;
 
     for (int i = 0; i < pais.size();i++){
