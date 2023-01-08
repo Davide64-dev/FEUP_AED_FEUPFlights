@@ -48,7 +48,7 @@ int main() {
 void info(FeupFlights& feup){
     string temp;
     char t;
-    cout << "  Inserir código do aeroporto: ";
+    cout << "  Inserir codigo do aeroporto: ";
     cin >> temp;
     Airport airport = Airport(temp, "fsc", "dwsc", "wvdscx", 34,34);
     if (feup.airports.find(airport) == feup.airports.end()){
@@ -66,16 +66,16 @@ void info(FeupFlights& feup){
     cout << "   d - Para quantos destinos diferentes vao os voos do "<< temp <<"?" << endl;
 
     cout << '\n';
-    cout << "   p - Para quantos países diferentes vao os voos do " << temp << "?" << endl;
+    cout << "   p - Para quantos paises diferentes vao os voos do " << temp << "?" << endl;
 
     cout << '\n';
-    cout << "   r - Quantos aeroportos são atingiveis com um maximo de Y voos? " << endl;
+    cout << "   r - Quantos aeroportos sao atingiveis com um maximo de Y voos? " << endl;
 
     cout << '\n';
-    cout << "   c- Quantas cidades são atingiveis com um maximo de Y voos? " << endl;
+    cout << "   c- Quantas cidades sao atingiveis com um maximo de Y voos? " << endl;
 
     cout << "\n";
-    cout << "   z - Quantos países são atingiveis com um máximode Y voos? " << endl;
+    cout << "   z - Quantos países sao atingiveis com um maximo de Y voos? " << endl;
 
     cout << "\n";
     cout << "   q - Recuar" << endl;
@@ -98,15 +98,15 @@ void info(FeupFlights& feup){
 
     if (t == 'd'){
         int num = feup.differentDestenies(temp);
-        cout << '\n' << "Com exatamente 1 voo, é possível chegar a exatamente " << num
+        cout << '\n' << "Com exatamente 1 voo, e possivel chegar a exatamente " << num
         << " destinos(cidades) diferentes"<< endl;
         cout << "\n";
     }
 
     if (t == 'p'){
         int num = feup.differentCountries(temp);
-        cout << '\n' << "Com exatamente 1 voo, é possível chegar a exatamente " << num
-             << " países diferentes"<< endl;
+        cout << '\n' << "Com exatamente 1 voo, e possivel chegar a exatamente " << num
+             << " paises diferentes"<< endl;
         cout << "\n";
     }
 
@@ -116,7 +116,7 @@ void info(FeupFlights& feup){
         cin >> y;
 
         int num = feup.airportsLessThanY(temp, y);
-        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+        cout << '\n' << "Com exatamente "<< y <<" voos, e possivel chegar a exatamente " << num
              << " aeroportos diferentes"<< endl;
         cout << "\n";
     }
@@ -127,7 +127,7 @@ void info(FeupFlights& feup){
         cin >> y;
 
         int num = feup.citiesLessThanY(temp, y);
-        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+        cout << '\n' << "Com exatamente "<< y <<" voos, e possivel chegar a exatamente " << num
              << " cidades diferentes"<< endl;
         cout << "\n";
     }
@@ -140,7 +140,7 @@ void info(FeupFlights& feup){
 
         int num = feup.countriesLessThanY(temp, y);
 
-        cout << '\n' << "Com exatamente "<< y <<" voos, é possível chegar a exatamente " << num
+        cout << '\n' << "Com exatamente "<< y <<" voos, e possivel chegar a exatamente " << num
              << " paises diferentes"<< endl;
         cout << "\n";
     }
@@ -242,10 +242,10 @@ char p(FeupFlights& feup){
     vector<string> airlines;
     string next;
     char answer;
-    cout  << '\n' <<"  Companhias Aereas - Deseja usar alguma companhia aérea em específico (s/n)? ";
+    cout  << '\n' <<"  Companhias Aereas - Deseja usar alguma companhia aerea em especifico (s/n)? ";
     cin >> answer;
     while(answer != 'n'){
-            cout << '\n' << "Código da companhia aerea a ser adicionada: ";
+            cout << '\n' << "Codigo da companhia aerea a ser adicionada: ";
             cin >> next;
             Airline airline = Airline(next, "nome", "callsign", "country");
             if (feup.airlines.find(airline) != feup.airlines.end()){
@@ -256,7 +256,7 @@ char p(FeupFlights& feup){
             }
             else{
                 char sair;
-                cout << '\n' << "Inserir uma companhia aérea válida!" << '\n';
+                cout << '\n' << "Inserir uma companhia aerea valida!" << '\n';
                 cout << "Deseja cancelar o filtro de pesquisa? (s/n)? ";
                 cin >> sair;
                 if (sair == 's') answer = 'n';
