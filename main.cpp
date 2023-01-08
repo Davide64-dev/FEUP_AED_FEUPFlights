@@ -75,7 +75,7 @@ void info(FeupFlights& feup){
     cout << "   c- Quantas cidades sao atingiveis com um maximo de Y voos? " << endl;
 
     cout << "\n";
-    cout << "   z - Quantos países sao atingiveis com um maximo de Y voos? " << endl;
+    cout << "   z - Quantos paises sao atingiveis com um maximo de Y voos? " << endl;
 
     cout << "\n";
     cout << "   q - Recuar" << endl;
