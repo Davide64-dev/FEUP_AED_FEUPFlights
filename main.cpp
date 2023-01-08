@@ -306,12 +306,12 @@ char p(FeupFlights& feup){
                 cout << '\n' << "   V" << endl;
                 it++;
             }
+            cout << feup.findAirport(*it).getName() << '\n';
         }
         else{
             cout << "Nao foi possível encontrar voos" << endl;
         }
     }
-    cout << feup.findAirport(*it).getName() << '\n';
     return retorno;
 }
 
