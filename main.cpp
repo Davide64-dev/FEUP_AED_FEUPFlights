@@ -274,23 +274,29 @@ char p(FeupFlights& feup){
             cout << airline.getCod() << ", " << airline.getName() << ", " << airline.getCallSign()
                  << ", " << airline.getCountry()  << '\n';
         }
-        cout << iguais << '\n';
+        cout << '\n' << iguais << '\n';
     }
     list<string> temp;
     temp = feup.flights.leastFlights(partidas, chegadas, airlines);
     list<string>::iterator it = temp.begin();
 
     if (airlines.empty()) {
-        cout << '\n';
-        while (*it != temp.back()) {
+        if (!temp.empty()) {
+            cout << '\n';
+            while (*it != temp.back()) {
+                cout << feup.findAirport(*it).getName() << '\n';
+                cout << "   |              ";
+                list<string>::iterator rt = it;
+                rt++;
+                list<string> toPrint = feup.flights.allFlights(*it, *rt);
+                for (auto i: toPrint) cout << feup.findAirline(i).getName() << "     ";
+                cout << '\n' << "   V" << endl;
+                it++;
+            }
             cout << feup.findAirport(*it).getName() << '\n';
-            cout << "   |              ";
-            list<string>::iterator rt = it;
-            rt++;
-            list<string> toPrint = feup.flights.allFlights(*it, *rt);
-            for (auto i : toPrint) cout << feup.findAirline(i).getName() << "     ";
-            cout << '\n' << "   V" << endl;
-            it++;
+        }
+        else{
+            cout << "Nao foi possivel encontrar voos" << endl;
         }
     }
     else{
